@@ -1,0 +1,625 @@
+/* ==========================================================================
+   GLOBAL.CSS
+   Site-wide styles: shared by every page. Contains design tokens, base
+   element resets, buttons, the site header/nav, and the site footer.
+   Page-specific sections (hero, cards, sponsors, etc.) live in their own
+   page stylesheet (e.g. home.css) so this file stays lean and reusable.
+   ========================================================================== */
+
+:root {
+    --color-brick-red: #A63A2D;
+    --color-brick-red-hover: #8C2F24;
+
+    --color-saddle-brown: #6B4226;
+    --color-secondary-brown: #4A2E1A;
+
+    --color-tan-light: #E8D9C0;
+    --color-text-dark: #2A1F1A;
+    --color-off-white: #FFFFFF;
+
+    --color-border: #D6D3CB;
+    --color-gray: #6B6B68;
+
+    --overlay-default: rgba(0, 0, 0, 0.2);
+
+    --bg-page: var(--color-off-white);
+    --bg-nav: var(--color-saddle-brown);
+    --bg-footer: var(--color-saddle-brown);
+    --bg-card: var(--color-off-white);
+    --bg-card-header: var(--color-secondary-brown);
+    --bg-card-body: var(--color-tan-light);
+    --text-inverse: var(--color-off-white);
+    --text-muted: var(--color-gray);
+    --text-link: var(--color-brick-red);
+
+    --font-display: 'Rye', cursive;
+    --font-body: 'Roboto', sans-serif;
+
+    --size-h1: 48px;
+    --size-h2: 40px;
+    --size-subtitle: 24px;
+    --size-nav-link: 20px;
+    --size-stat: 20px;
+    --size-body-lg: 18px;
+    --size-body: 16px;
+    --size-body-sm: 14px;
+    --size-label: 12px;
+    --size-badge: 10px;
+    --size-micro: 8px;
+    --space-3xl: 64px;
+    --size-body-xl: 20px;
+
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    --line-height-tight: 1;
+    --line-height-heading: 1.15;
+    --line-height-body: 22px;
+    --line-height-loose: 1.4;
+
+    --space-2xs: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+
+    --radius-sm: 3px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --radius-xl: 12px;
+
+    --shadow-card: 0 1px 3px rgba(42, 31, 26, 0.12);
+
+    --nav-height: 80px;
+    --frame-width: 1440px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--size-body);
+    color: var(--color-text-dark);
+    background: var(--bg-page);
+    line-height: var(--line-height-body);
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+    font-weight: var(--weight-regular);
+    line-height: var(--line-height-heading);
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-brick-red);
+    color: var(--text-inverse);
+    border-color: var(--color-brick-red);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-brick-red-hover);
+    border-color: var(--color-brick-red-hover);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-text-dark);
+    border-color: var(--color-border);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-brick-red-hover);
+    color: var(--text-inverse);
+    border-color: var(--color-brick-red-hover);
+}
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+
+.site-header {
+    background: var(--bg-nav);
+    width: 100%;
+    position: relative;
+    z-index: 20;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-xl);
+    padding: var(--space-md) var(--space-xl);
+    width: 100%;
+}
+
+.nav-logo {
+    flex-shrink: 0;
+}
+
+.main-nav {
+    /* Takes up the remaining space between the logo and the search/actions
+       group, then centers the nav links within that space — instead of the
+       old margin-left: auto, which just pinned the links against the search
+       bar and left a gap of empty space on the left side of the header. */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+}
+
+.nav-logo img {
+    height: 78px;
+    background-color: var(--color-tan-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xs) var(--space-xs);
+    box-shadow: var(--shadow-card);
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-item a {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--size-nav-link);
+    font-weight: var(--weight-semibold);
+    color: var(--color-tan-light);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-xs);
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-item a:hover {
+    /* Was a hard swap to full brick-red text, which was hard to read against
+       the dark nav bar. Text now stays the same light, high-contrast color;
+       the brick-red shows up as a subtle underline + faint background wash
+       instead, so it still reads as "hovered" without hurting legibility. */
+    color: var(--color-tan-light);
+    background-color: rgba(232, 217, 192, 0.08);
+    border-bottom-color: var(--color-brick-red);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--color-secondary-brown);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    display: none;
+    flex-direction: column;
+    min-width: 220px;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.dropdown-menu a {
+    padding: var(--space-sm) var(--space-md);
+    color: var(--color-tan-light);
+    font-size: var(--size-body);
+    font-weight: var(--weight-medium);
+    transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background: var(--color-brick-red-hover);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown > a::after {
+    content: "▾";
+    margin-left: 4px;
+    font-size: 0.8em;
+}
+
+.arrow {
+    font-size: 0.8em;
+    margin-left: 4px;
+}
+
+.nav-search-wrapper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.nav-search-input {
+    /* Was a fixed 160px, which looked disproportionately small against the
+       header on wider screens. clamp() lets it grow with the viewport up
+       to a point, while staying at the original 160px on narrow/mobile
+       widths where nav-actions is still visible. */
+    width: clamp(160px, 16vw, 280px);
+    height: 36px;
+    padding: 0 var(--space-sm);
+    margin-right: var(--space-xs);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    background: var(--color-tan-light);
+    color: var(--color-text-dark);
+    font-family: var(--font-body);
+    font-size: var(--size-body-sm);
+    transition: width 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.nav-search-input:focus {
+    outline: none;
+    border-color: var(--color-brick-red);
+    width: clamp(200px, 20vw, 320px);
+}
+
+.nav-search {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+    flex-shrink: 0;
+}
+
+.nav-search:hover,
+.nav-search:focus-visible {
+    background-color: rgba(232, 217, 192, 0.15);
+}
+
+.nav-search:hover svg {
+    stroke: var(--color-brick-red);
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nav-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--color-tan-light);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Nav mobile breakpoint — kept directly below the nav rules it modifies */
+@media (max-width: 1024px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 20;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin-left: 0;
+        background: var(--bg-nav);
+        padding: var(--space-sm) var(--space-xl) var(--space-lg);
+        box-shadow: var(--shadow-card);
+        max-height: calc(100vh - var(--nav-height));
+        overflow-y: auto;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-item a {
+        display: block;
+        padding: var(--space-sm) 0;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: none;
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        padding-left: var(--space-md);
+        min-width: 0;
+    }
+
+    .dropdown.open .dropdown-menu {
+        display: flex;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: none;
+    }
+
+    .dropdown.open:hover .dropdown-menu {
+        display: flex;
+    }
+
+    /* Logo shrinks a bit once the hamburger takes over (was in the bottom
+       768px breakpoint originally; moved here since it's still a nav rule) */
+    .nav-logo img {
+        height: 56px;
+    }
+}
+
+/* ==========================================================================
+   SITE FOOTER
+   ========================================================================== */
+
+.site-footer {
+    background: linear-gradient(#4a2e1a, #3a1e12);
+    color: var(--color-tan-light);
+    padding: var(--space-2xl) var(--space-xl);
+    border-top: 4px solid var(--color-brick-red);
+    position: relative;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.site-footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer-grid {
+    max-width: var(--frame-width);
+    margin: 0 auto;
+    display: grid;
+    /* Was 1.6fr 1fr 1fr — added a 4th column for the new Explore links */
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid rgba(232, 217, 192, 0.2);
+}
+
+.site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('textures/leather-pattern.png');
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-width: 360px;
+}
+
+.footer-logo {
+    height: 70px;
+    width: auto;
+    align-self: flex-start;
+    margin-bottom: var(--space-sm);
+}
+
+.footer-brand p {
+    font-size: var(--size-body);
+    line-height: var(--line-height-loose);
+    color: var(--color-tan-light);
+    max-width: 320px;
+}
+
+.footer-phone,
+.footer-email {
+    font-size: var(--size-body-sm);
+    opacity: 0.85;
+}
+
+.footer-links h4,
+.footer-connect h4 {
+    font-family: var(--font-display);
+    font-size: var(--size-body-lg);
+    color: var(--color-off-white);
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-2xs);
+    border-bottom: 2px solid var(--color-brick-red);
+    display: inline-block;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.footer-links nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.footer-links a {
+    font-size: var(--size-body-sm);
+    color: var(--color-tan-light);
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: 2px 0;
+}
+
+.footer-links a:hover {
+    color: var(--color-brick-red);
+    transform: translateX(4px);
+}
+
+.footer-connect {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.footer-connect-icons {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.social-icon {
+    /* Was a 40x40 box with a translucent white background behind the icon —
+       feedback called it out as looking out of place, so this is now just
+       the icon itself, colored to match the footer text, with no box. */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-tan-light);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.social-icon:hover {
+    color: var(--color-brick-red);
+    transform: translateY(-3px);
+}
+
+.footer-credit-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(232, 217, 192, 0.4);
+    text-underline-offset: 2px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.footer-credit-link:hover {
+    color: var(--color-off-white);
+    text-decoration-color: var(--color-brick-red);
+}
+
+.footer-bottom {
+    max-width: var(--frame-width);
+    margin: 0 auto;
+    padding-top: var(--space-lg);
+    display: flex;
+    /* Was space-between (pushed copyright left, credit right) — now centers
+       both together as one group. */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-size: var(--size-body-sm);
+    color: var(--color-tan-light);
+    opacity: 0.7;
+}
+
+/* Footer mobile breakpoint — kept directly below the footer rules it modifies */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        padding-bottom: var(--space-xl);
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-xs);
+    }
+}

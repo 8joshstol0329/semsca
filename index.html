@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<!-- Tells the browser to render this page using modern HTML5 rules -->
+<html lang="en">
+<!-- lang="en" helps screen readers and search engines know the page's language -->
+<head>
+    <meta charset="UTF-8">
+    <!-- UTF-8 supports virtually every character/symbol, avoiding weird encoding glitches -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Makes the page render at the device's actual width and not zoomed out — required for responsive design to work on phones -->
+     <title>SEMSCA — Southeastern Minnesota Saddle Club Association</title>
+     <!-- Shown in the browser tab and search engine results -->
+      <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rye&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Loads the Inter, Rye, and Roboto fonts (with specific weights) from Google Fonts, referenced later in styles.css as --font-display / --font-body -->
+
+    <!-- Styles -->
+    <!-- global.css holds shared tokens/reset/buttons/nav/footer (every page loads this);
+         home.css holds homepage-only sections. Preloaded so the browser fetches them
+         at high priority instead of waiting to discover them mid-parse. -->
+    <link rel="preload" href="global.css" as="style">
+    <link rel="preload" href="home.css" as="style">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+ <header class="site-header">
+  <!-- Top navigation bar, styled by .site-header in styles.css -->
+  <div class="nav-container">
+    <!-- Left: Logo -->
+    <a href="/" class="nav-logo">
+      <!-- Logo links back to the homepage -->
+      <img src="images/Rectangle.png" alt="SEMSCA logo">
+      <!-- alt text describes the image for screen readers / if the image fails to load -->
+    </a>
+
+    <!-- Center: Navigation Links -->
+    <nav class="main-nav" id="main-nav">
+      <!-- <nav> is the semantically-correct wrapper for site navigation; id="main-nav" is referenced by aria-controls below and likely by script.js for the hamburger toggle -->
+      <ul class="nav-links">
+        <!-- Unordered list of top-level nav items; bullets are removed via CSS -->
+        <li class="nav-item dropdown">
+          <!-- "dropdown" class marks this item as having a hidden submenu -->
+          <a href="#">About</a>
+          <!-- href="#" is a placeholder link — the real destination isn't wired up yet since this item's job is just to reveal the dropdown -->
+          <ul class="dropdown-menu">
+            <!-- Hidden submenu, shown on hover (desktop) or tap (mobile via JS) -->
+            <li><a href="mission.html">Mission & History</a></li>
+            <li><a href="board.html">Board Members</a></li>
+            <li><a href="clubs.html">Member Clubs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#">Events & Shows</a>
+          <ul class="dropdown-menu">
+            <li><a href="schedule.html">Show Schedule</a></li>
+            <li><a href="results.html">Results & Points</a></li>
+            <li><a href="rules.html">Rules & Guidelines</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#">Forms</a>
+          <ul class="dropdown-menu">
+            <li><a href="membership.html">Membership Form</a></li>
+            <li><a href="scholarship.html">Scholarship Form</a></li>
+            <li><a href="showentry.html">Show Entry Form</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#">Programs & Awards</a>
+          <ul class="dropdown-menu">
+            <li><a href="yearend.html">Year-End Awards</a></li>
+            <li><a href="scholarships.html">Scholarships</a></li>
+            <li><a href="volunteer.html">Volunteer Recognition</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="contact.html">Contact</a></li>
+        <!-- Plain nav item with no dropdown — links straight to the Contact page -->
+      </ul>
+    </nav>
+
+    <!-- Right: Search + mobile menu toggle -->
+    <div class="nav-actions">
+      <div class="nav-search-wrapper">
+        <input type="search" class="nav-search-input" placeholder="Search..." aria-label="Search site">
+        <button class="nav-search" aria-label="Search">
+          <!-- aria-label gives screen readers a text description since this button has no visible text, only an icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8D9C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Inline SVG magnifying-glass icon; drawn with a circle (the lens) + a diagonal line (the handle) -->
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+        <!-- The hamburger menu button, hidden on desktop and shown below 1024px via CSS media query -->
+        <!-- aria-expanded should be toggled true/false by script.js as the menu opens/closes, so screen readers know its state -->
+        <!-- aria-controls points to the #main-nav element this button opens/closes -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <!-- The 3 empty <span> elements become the 3 horizontal bars of the hamburger icon via CSS -->
+      </button>
+    </div>
+  </div>
+</header>
+
+
+
+<main>
+     <!-- Everything below is the main homepage content, wrapped in a single <main> landmark for accessibility/SEO -->
+
+   <section class="hero">
+  <div class="hero-inner">
+    <h1>Southeastern Minnesota Saddle Club Association</h1>
+    <p class="hero-subtitle">Connecting riders across Southeastern Minnesota</p>
+    <div class="hero-award-badge">
+      <span class="hero-award-badge-icon" aria-hidden="true">&#127942;</span>
+      Home of the Horseperson of the Year Award
+    </div>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary">2026 Show Schedule</a>
+      <a href="#" class="btn btn-outline">Join a Club</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-number">40+</span><span class="stat-label">Years connecting riders</span></div>
+      <div class="stat"><span class="stat-number">12</span><span class="stat-label">Member clubs</span></div>
+      <div class="stat"><span class="stat-number">20+</span><span class="stat-label">Shows each season</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM & AWARDS -->
+<section class="programs-section">
+    <div class="programs-container">
+        <div class="programs-split">
+
+            <!-- Photo side -->
+            <div class="programs-photo">
+                <img src="images/awards.jpg" alt="Riders at the SEMSCA year-end awards banquet">
+            </div>
+
+            <!-- Content side -->
+            <div class="programs-content">
+                <h2 class="section-title-display">Programs and awards</h2>
+
+                <div class="program-featured">
+                    <h2>Horseperson of the year</h2>
+                    <p>Voted on by members, honoring a season of dedication and sportsmanship.</p>
+                </div>
+
+                <ul class="program-list">
+                    <li><strong>Scholarship</strong> — for members pursuing equestrian education.</li>
+                    <li><strong>Royalty</strong> — elected members representing SEMSCA at shows.</li>
+                    <li><strong>Trail riding and driving</strong> — group rides open to all clubs.</li>
+                    <li><strong>Year-end awards</strong> — season points, presented at the banquet.</li>
+                </ul>
+
+                <a href="#" class="btn btn-primary programs-cta">Explore all programs</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section class="explore-section">
+    <div class="explore-grid">
+
+        <article class="explore-card">
+            <div class="explore-icon-wrapper">
+                <svg class="explore-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8 21v-3.5c0-1 .5-2 1.5-2.5L11 14l-1-3c-.3-1 .2-2 1.2-2.3L13 8l1.5-3c.5-1 1.5-1.5 2.5-1l1 .5c.7.3 1 1 .8 1.7l-1 3c-.2.6 0 1.3.5 1.7l1 .8c.6.5.8 1.3.5 2l-1 2.3"/>
+                    <path d="M8 21h6"/>
+                    <path d="M9.5 14.5 7 16c-.6.4-1 1-1 1.8V21"/>
+                    <circle cx="15.5" cy="7" r=".6" fill="currentColor" stroke="none"/>
+                </svg>
+            </div>
+            <h2>Horse Shows</h2>
+            <p>find shows, schedules and results.</p>
+            <hr class="explore-divider">
+            <a href="#" class="explore-link">explore &rarr;</a>
+        </article>
+
+        <article class="explore-card">
+            <div class="explore-icon-wrapper">
+                <svg class="explore-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="16" rx="2"/>
+                    <path d="M16 3v4M8 3v4M3 10h18"/>
+                </svg>
+            </div>
+            <h2>Events</h2>
+            <p>see our full calender of events.</p>
+            <hr class="explore-divider">
+            <a href="#" class="explore-link">explore &rarr;</a>
+        </article>
+
+        <article class="explore-card">
+            <div class="explore-icon-wrapper">
+                <svg class="explore-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1Z"/>
+                    <rect x="5" y="6" width="14" height="15" rx="2"/>
+                    <path d="M8 12h8M8 16h5"/>
+                </svg>
+            </div>
+            <h2>Forms & Applications</h2>
+            <p>Entries applications and more.</p>
+            <hr class="explore-divider">
+            <a href="#" class="explore-link">explore &rarr;</a>
+        </article>
+
+        <article class="explore-card">
+            <div class="explore-icon-wrapper">
+                <svg class="explore-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/>
+                    <path d="M8 5H5a3 3 0 0 0 3 5M16 5h3a3 3 0 0 1-3 5"/>
+                    <path d="M12 13v3M9 21h6M9.5 21c0-2 1-3 2.5-3s2.5 1 2.5 3"/>
+                </svg>
+            </div>
+            <h2>Awards</h2>
+            <p>year - end awards and programs</p>
+            <hr class="explore-divider">
+            <a href="#" class="explore-link">explore &rarr;</a>
+        </article>
+
+        <article class="explore-card">
+            <div class="explore-icon-wrapper">
+                <svg class="explore-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 6c-1.5-1.2-3.5-1.8-6-1.8v13.6c2.5 0 4.5.6 6 1.8V6Z"/>
+                    <path d="M12 6c1.5-1.2 3.5-1.8 6-1.8v13.6c-2.5 0-4.5.6-6 1.8V6Z"/>
+                </svg>
+            </div>
+            <h2>Rules</h2>
+            <p>View rules, by laws and guidelines.</p>
+            <hr class="explore-divider">
+            <a href="#" class="explore-link">explore &rarr;</a>
+        </article>
+
+        <article class="explore-card">
+            <div class="explore-icon-wrapper">
+                <svg class="explore-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 15 15 9"/>
+                    <path d="M10.5 6.5 12 5a3.5 3.5 0 0 1 5 5l-1.5 1.5"/>
+                    <path d="M13.5 17.5 12 19a3.5 3.5 0 0 1-5-5l1.5-1.5"/>
+                </svg>
+            </div>
+            <h2>Resources</h2>
+            <p>Links, sponsors and useful information</p>
+            <hr class="explore-divider">
+            <a href="#" class="explore-link">explore &rarr;</a>
+        </article>
+
+    </div>
+</section>
+
+    <!-- ABOUT SEMSCA — dark 3-column banner: image | text | circular badge -->
+    <!-- TODO(Joshua): confirm with client whether images/rope.png is a placeholder
+         or the real image they want here — feedback flagged it as unclear. -->
+<section class="about-semsca-section">
+    <div class="about-semsca-container">
+        
+        <!-- Left Column: Visual Showcase -->
+        <div class="about-media-col">
+            <!-- NOTE: this wrapper div uses class "about-media-col", but styles.css only
+                 defines styling for ".about-image-frame" (the child below), not
+                 ".about-media-col" itself — so this outer div currently has no styling
+                 of its own; the grid column sizing comes from .about-semsca-container instead. -->
+            <div class="about-image-frame">
+                <img src="images/saddle.jpg" alt="SEMSCA community speaker presentation">
+                <!-- Descriptive alt text here since this image conveys real content, unlike the decorative icons above -->
+            </div>
+        </div>
+
+        <!-- Center Column: Text & Call to Action -->
+        <div class="about-text-col">
+            <h2 class="section-title-inverse">ABOUT SEMSCA</h2>
+            <!-- "inverse" refers to light text on a dark background -->
+            <div class="about-body-text">
+                <p>SEMSCA brings together 12 local saddle clubs to support:</p>
+                <ul class="about-highlights-list">
+                    <li>Horse shows</li>
+                    <li>Programs</li>
+                    <li>Competition</li>
+                    <li>Community</li>
+                </ul>
+                <p>connecting saddle clubs and horse enthusiasts throughout southeastern minnesota</p>
+                <!-- NOTE: this second paragraph isn't capitalized (no capital letters at all) — likely a placeholder/draft line worth revisiting before this goes live -->
+            </div>
+            <a href="#" class="btn btn-primary">Learn More About SEMSCA</a>
+        </div>
+
+        <!-- Right Column: Geometric Badge Graphic -->
+        <div class="about-badge-col">
+            <div class="community-circle-badge">
+                <div class="badge-text-stack">
+                    <span>12 clubs</span>
+                    <span>one community</span>
+                    <span>a lifetime of memories</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <!-- UPCOMING SHOWS -->
+    <section class="upcoming-shows">
+        <h2>Upcoming Shows</h2>
+
+        <div class="shows-grid">
+            <!-- Grid of individual show cards, each with a floating date badge -->
+            <article class="show-card">
+                <span class="date-badge">Aug 1</span>
+                <!-- Positioned via CSS to overlap the top-right edge of the card -->
+                <h2>Mower County Trailblazers Saddle Club Open SEMSCA</h2>
+                <hr>
+                <p class="show-time">8:00 AM</p>
+                <p class="show-location">Mower County Fairgrounds</p>
+                <a href="#" class="learn-more-link">Learn more →</a>
+                <!-- NOTE: uses class "learn-more-link" (with the actual → character typed directly)
+                     while the feature cards above use class "learn-more" with the &rarr; entity —
+                     both classes are styled identically in CSS, and both render the same arrow, so
+                     this is just an inconsistency in which name/character got used where, not a bug. -->
+            </article>
+
+            <article class="show-card">
+                <span class="date-badge">Aug 2</span>
+                <h2>SEMSCA Benefit Open Horse Show</h2>
+                <hr>
+                <p class="show-time">8:00 AM</p>
+                <p class="show-location">Location TBD</p>
+                <a href="#" class="learn-more-link">Learn more →</a>
+            </article>
+
+            <article class="show-card">
+                <span class="date-badge">Aug 9</span>
+                <h2>Chatfield Saddle Club Open SEMSCA Horse Show</h2>
+                <hr>
+                <p class="show-time">5:00 PM</p>
+                <p class="show-location">Chatfield Fairgrounds</p>
+                <a href="#" class="learn-more-link">Learn more →</a>
+            </article>
+        </div>
+
+        <a href="#" class="btn btn-outline view-more">View More</a>
+        <!-- Combines the shared .btn/.btn-outline look with .view-more, which just centers this specific button within the section -->
+    </section>
+
+
+<!-- FEATURE CARDS -->
+<section class="feature-cards">
+
+    <!-- SEMSCA 101 -->
+    <article class="feature-card">
+        <h2 class="feature-card-header">SEMSCA 101</h2>
+
+        <div class="feature-card-body">
+            <span class="tag">New riders</span>
+
+            <h2>New to SEMSCA? Start here</h2>
+            <p>A quick guide to rules, points, and getting your first show entered.</p>
+
+            <hr class="card-divider">
+
+            <ul class="quick-links">
+                <li><a href="#">Show entry checklist</a></li>
+                <li><a href="#">Point system overview</a></li>
+                <li><a href="#">Beginner rider tips</a></li>
+            </ul>
+
+            <a href="#" class="learn-more">Learn more →</a>
+        </div>
+    </article>
+
+    <!-- JOIN A CLUB -->
+    <article class="feature-card">
+        <h2 class="feature-card-header">Join a club</h2>
+
+        <div class="feature-card-body">
+            <span class="tag">12 clubs</span>
+
+            <h2>Find a club near you</h2>
+            <p>Browse member clubs across the region and reach out to join.</p>
+
+            <hr class="card-divider">
+
+            <ul class="quick-links">
+                <li><a href="#">Club directory</a></li>
+                <li><a href="#">How to join</a></li>
+                <li><a href="#">Membership benefits</a></li>
+            </ul>
+
+            <a href="#" class="learn-more">Learn more →</a>
+        </div>
+    </article>
+
+    <!-- SCHOLARSHIPS -->
+    <article class="feature-card">
+        <h2 class="feature-card-header">Apply for scholarships</h2>
+
+        <div class="feature-card-body">
+            <span class="tag">Deadline Mar 1</span>
+
+            <h2>Support for young riders</h2>
+            <p>Annual scholarships for members pursuing equestrian education.</p>
+
+            <hr class="card-divider">
+
+            <ul class="quick-links">
+                <li><a href="#">Eligibility requirements</a></li>
+                <li><a href="#">Application form</a></li>
+                <li><a href="#">Past recipients</a></li>
+            </ul>
+
+            <a href="#" class="learn-more">Learn more →</a>
+        </div>
+    </article>
+
+</section>
+
+   <!-- SPONSORS SECTION WITH CAROUSEL CONTROLS -->
+<section class="sponsors">
+    
+    <div class="sponsors-slider-wrapper">
+        <!-- Row containing: left arrow | sponsor grid | right arrow -->
+        
+        <!-- Left Slider Arrow Button -->
+        <button class="sponsor-nav-btn prev" aria-label="Previous sponsors">
+            &larr;
+            <!-- &larr; = left-arrow character (←); aria-label describes the button's purpose for screen readers since the arrow symbol alone isn't descriptive -->
+        </button>
+
+        <!-- Your Existing Grid -->
+        <div class="sponsors-grid">
+            <article class="sponsor-card">
+                <img src="cyndythorn.png" alt="Cyndy Thorn Imagery logo" class="sponsor-logo-placeholder">
+                <h4>Cyndy Thorn Imagery</h4>
+                <p>Horse show photography</p>
+            </article>
+
+            <article class="sponsor-card">
+               <img src="images/hoffmans tackshop.png" alt="Cyndy Thorn Imagery logo" class="sponsor-logo-placeholder">
+                <h4>Hoffmann Stables Tack Shop</h4>
+                <p>Tack and equipment</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/pet & country store.png" alt="Cyndy Thorn Imagery logo" class="sponsor-logo-placeholder">
+                <h4>Rochester Pet and Country Store</h4>
+                <p>Feed and supplies</p>
+            </article>
+
+            <article class="sponsor-card">
+                 <img src="images/coyales.png" alt="Cyndy Thorn Imagery logo" class="sponsor-logo-placeholder">
+                <h4>Quarters by Coyales</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <!-- The 10 cards below are placeholders generated from filenames in /images —
+                 names, alt text, and descriptions all need to be checked against the actual sponsors -->
+            <article class="sponsor-card">
+                <img src="images/bluff county.png" alt="Bluff County logo" class="sponsor-logo-placeholder">
+                <h4>Bluff County</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/donnsleather.png" alt="Donn's Leather logo" class="sponsor-logo-placeholder">
+                <h4>Donn's Leather</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/firstsoutheastbank.png" alt="First Southeast Bank logo" class="sponsor-logo-placeholder">
+                <h4>First Southeast Bank</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/forever 8.png" alt="Forever 8 logo" class="sponsor-logo-placeholder">
+                <h4>Forever 8</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/hoursenaround.png" alt="Horsen Around logo" class="sponsor-logo-placeholder">
+                <h4>Horsen Around</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/islandriders.png" alt="Island Riders logo" class="sponsor-logo-placeholder">
+                <h4>Island Riders</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/jkkbluelowryboy.png" alt="JKK Blue Lowry Boy logo" class="sponsor-logo-placeholder">
+                <h4>JKK Blue Lowry Boy</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/jodie-distant.png" alt="Jodie Distant logo" class="sponsor-logo-placeholder">
+                <h4>Jodie Distant</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/larson livestock.png" alt="Larson Livestock logo" class="sponsor-logo-placeholder">
+                <h4>Larson Livestock</h4>
+                <p>Local sponsor</p>
+            </article>
+
+            <article class="sponsor-card">
+                <img src="images/ragsnranchwear.png" alt="Rags N Ranch Wear logo" class="sponsor-logo-placeholder">
+                <h4>Rags N Ranch Wear</h4>
+                <p>Local sponsor</p>
+            </article>
+        </div>
+
+        <!-- Right Slider Arrow Button -->
+        <button class="sponsor-nav-btn next" aria-label="Next sponsors">
+            &rarr;
+        </button>
+        <!-- Arrow buttons scroll .sponsors-grid by one card width via script.js -->
+
+    </div>
+</section>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+
+        <!-- COLUMN 1: Brand / Contact -->
+        <div class="footer-brand">
+            <img src="images/Rectangle.png" alt="SEMSCA logo" class="footer-logo">
+
+            <p>Connecting riders across Southeastern Minnesota</p>
+
+            <a href="tel:+15074374066" class="footer-phone">(507) 437 - 4066</a>
+            <a href="mailto:semscasecretary@gmail.com" class="footer-email">semscasecretary@gmail.com</a>
+        </div>
+
+        <!-- COLUMN 2: Quick Links -->
+        <div class="footer-links">
+            <h4>Links</h4>
+            <nav class="footer-links-list">
+                <a href="#">Home</a>
+                <a href="#">Events</a>
+                <a href="#">Resources</a>
+                <a href="#">Applications</a>
+                <a href="#">About</a>
+                <a href="#">Links</a>
+            </nav>
+        </div>
+
+        <!-- COLUMN 3: Explore — mirrors a few of the nav dropdown sub-sections,
+             using the same real hrefs those dropdown items already point to -->
+        <div class="footer-links">
+            <h4>Explore</h4>
+            <nav class="footer-links-list">
+                <a href="mission.html">Mission &amp; History</a>
+                <a href="board.html">Board Members</a>
+                <a href="clubs.html">Member Clubs</a>
+                <a href="schedule.html">Show Schedule</a>
+                <a href="membership.html">Membership Form</a>
+                <a href="yearend.html">Year-End Awards</a>
+            </nav>
+        </div>
+
+        <!-- COLUMN 4: Social -->
+       <div class="footer-connect">
+    <h4>Connect</h4>
+
+    <div class="footer-connect-icons">
+        <a href="https://facebook.com" class="social-icon" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22 12.07C22 6.48 17.52 2 12 2S2 6.48 2 12.07c0 5.02 3.66 9.19 8.44 9.93v-7.03H8.1v-2.9h2.34V9.83c0-2.3 1.37-3.57 3.47-3.57.99 0 2.03.18 2.03.18v2.24h-1.14c-1.12 0-1.47.7-1.47 1.42v1.7h2.5l-.4 2.9h-2.1v7.03C18.34 21.26 22 17.09 22 12.07z"/>
+            </svg>
+        </a>
+    </div>
+</div>
+
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 SEMSCA. All rights reserved</p>
+        <p>Made by <a href="https://stoltzwebdesign.com" target="_blank" rel="noopener noreferrer" class="footer-credit-link">Stoltz Web Design</a></p>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+<script src="script.js"></script>
+<!-- Loaded at the very end of <body> so it runs after all HTML elements above already
+     exist in the page — this is what powers the hamburger menu / mobile dropdown toggling,
+     and (as of this pass) the sponsors carousel's arrows + auto-rotate. -->
+</body>
+</html>
