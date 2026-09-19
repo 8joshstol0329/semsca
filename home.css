@@ -13,7 +13,7 @@
 .hero {
     position: relative;
     min-height: clamp(650px, 90vh, 900px);
-    background-image: url('images/Bareback.jpg');
+    background-image: url('Bareback.jpg');
     background-size: cover;
     /* Was "center top" — nudged the horizontal anchor toward the right so
        the rider sits further right in the frame, leaving less dead space
